@@ -1,7 +1,10 @@
 import React from 'react'
-
 import Header from './Header.js'
-import ContestPreview from './ContestPreview.js'
+import ContestList from './ContestList.js'
+
+
+const pushState = (obj, url) =>
+    window.history.pushState(obj, '', url);
 
 
 class App extends React.Component {
@@ -25,23 +28,25 @@ class App extends React.Component {
         //         });
         //     })
         //     .catch(console.error)
-
-
     }
 
     componentWillUnmount() {
         // would clean timers and listeners here
     }
 
+    fetchContest = (contestId) => {
+        pushState(
+            {currentContestId: contestId},
+            `/contest/${contestId}`
+        );
+    };
     render() {
         return (
             <div className="App">
                 <Header message={this.state.pageHeader}/>
-                <div>
-                    {this.state.contests.map(contest =>
-                        <ContestPreview key={contest.id} {...contest}/>
-                    )}
-                </div>
+                <ContestList
+                    onContestClick={this.fetchContest}
+                    contests={this.state.contests}/>
             </div>
         );
     }

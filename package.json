@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "start": "nodemon --exec babel-node server.js --ignore public/",
-      "dev": "webpack -wd"
+    "start": "nodemon --exec babel-node server.js --ignore public/",
+    "dev": "webpack -wd"
   },
   "author": "",
   "license": "GPL-3.0",
   "dependencies": {
+    "axios": "^0.15.3",
     "express": "^4.14.0",
+    "json-loader": "^0.5.4",
     "mongodb": "^2.2.14",
+    "node-sass-middleware": "^0.10.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
   },

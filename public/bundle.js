@@ -57,9 +57,13 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
+	var _App = __webpack_require__(/*! ./components/App.js */ 178);
+	
+	var _App2 = _interopRequireDefault(_App);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement('h2', null, 'Hello, React'), document.getElementById('root') // render to element with id root
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { initialContests: window.initialData.contests }), document.getElementById('root') // render to element with id root
 	);
 
 /***/ },
@@ -22041,6 +22045,190 @@
 	
 	module.exports = ReactDOMInvalidARIAHook;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 3)))
+
+/***/ },
+/* 178 */
+/*!*******************************!*\
+  !*** ./src/components/App.js ***!
+  \*******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Header = __webpack_require__(/*! ./Header.js */ 179);
+	
+	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _ContestPreview = __webpack_require__(/*! ./ContestPreview.js */ 181);
+	
+	var _ContestPreview2 = _interopRequireDefault(_ContestPreview);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var App = function (_React$Component) {
+	    _inherits(App, _React$Component);
+	
+	    function App() {
+	        var _ref;
+	
+	        var _temp, _this, _ret;
+	
+	        _classCallCheck(this, App);
+	
+	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	            args[_key] = arguments[_key];
+	        }
+	
+	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	            pageHeader: "Naming Contests",
+	            contests: _this.props.initialContests
+	        }, _temp), _possibleConstructorReturn(_this, _ret);
+	    }
+	
+	    // approach below relies on stage 2 being enabled;
+	    // the not-so-modern approach uses constructor()
+	
+	
+	    _createClass(App, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            // we would put timers and listeners here,
+	            // also AJAX requests will go here
+	
+	            // // Use axios for AJAX requests, and
+	            // // gives us a promise
+	            // axios.get('/api/contests')
+	            //     .then(resp => {
+	            //         this.setState({
+	            //             contests: resp.data.contests
+	            //         });
+	            //     })
+	            //     .catch(console.error)
+	
+	
+	        }
+	    }, {
+	        key: 'componentWillUnmount',
+	        value: function componentWillUnmount() {
+	            // would clean timers and listeners here
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'App' },
+	                _react2.default.createElement(_Header2.default, { message: this.state.pageHeader }),
+	                _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    this.state.contests.map(function (contest) {
+	                        return _react2.default.createElement(_ContestPreview2.default, _extends({ key: contest.id }, contest));
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return App;
+	}(_react2.default.Component);
+	
+	;
+	
+	exports.default = App;
+
+/***/ },
+/* 179 */
+/*!**********************************!*\
+  !*** ./src/components/Header.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Header = function Header(_ref) {
+	    var message = _ref.message;
+	
+	    return _react2.default.createElement(
+	        'h2',
+	        { className: 'Header text-center' },
+	        message
+	    );
+	};
+	
+	// Code below is used to verify types of our props
+	Header.propTypes = {
+	    message: _react2.default.PropTypes.string
+	};
+	
+	exports.default = Header;
+
+/***/ },
+/* 180 */,
+/* 181 */
+/*!******************************************!*\
+  !*** ./src/components/ContestPreview.js ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ContestPreview = function ContestPreview(contest) {
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "ContestPreview" },
+	        _react2.default.createElement(
+	            "div",
+	            { className: "category-name" },
+	            contest.categoryName
+	        ),
+	        _react2.default.createElement(
+	            "div",
+	            { className: "contest-name" },
+	            contest.contestName
+	        )
+	    );
+	};
+	
+	exports.default = ContestPreview;
 
 /***/ }
 /******/ ]);

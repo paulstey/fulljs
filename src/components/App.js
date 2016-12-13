@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from './Header.js'
 import ContestList from './ContestList.js'
+import Contest from './Contest.js'
+import * as api from '../api.js';
 
 
 const pushState = (obj, url) =>
@@ -39,14 +41,33 @@ class App extends React.Component {
             {currentContestId: contestId},
             `/contest/${contestId}`
         );
+
+        api.fetchContest(contestId).then(contest => {
+            this.setState({
+                pageHeader: contest.contestName,
+                currentContestId: contest.id,
+                contests: {
+                    ...this.state.contests,
+                    [contest.id]: contest
+                }
+            });
+        });
     };
+
+    currentContent() {
+        if (this.state.currentContestId) {
+            return <Contest {...this.state.contests[this.state.currentContestId]}/>;
+        } else {
+            return <ContestList
+                onContestClick={this.fetchContest}
+                contests={this.state.contests}/>
+        }
+    }
     render() {
         return (
             <div className="App">
                 <Header message={this.state.pageHeader}/>
-                <ContestList
-                    onContestClick={this.fetchContest}
-                    contests={this.state.contests}/>
+                {this.currentContent()}
             </div>
         );
     }

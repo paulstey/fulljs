@@ -18,10 +18,10 @@ server.set('veiw engine', 'ejs');
 
 
 // adding "routes"
-server.get('/', (req, res) => {
+server.get(['/', '/contest/:contestId'], (req, res) => {
 
     // serverRender() returns a promise
-    serverRender()
+    serverRender(req.params.contestId)
         .then(({initialMarkup, initialData}) => {
             res.render('index.ejs', {
                 // second arguement to render() is an object with

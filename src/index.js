@@ -6,6 +6,6 @@ import App from './components/App.js';
 
 
 ReactDOM.render(
-    <App initialContests={window.initialData.contests}/>,
+    <App initialData={window.initialData}/>,
     document.getElementById('root')                   // render to element with id root
 );
